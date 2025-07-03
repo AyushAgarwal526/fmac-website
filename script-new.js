@@ -66,27 +66,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     filmItems.forEach(item => {
         item.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-6px)';
-            this.style.boxShadow = '0 12px 32px rgba(0, 0, 0, 0.15)';
-            this.style.borderColor = 'rgba(0, 122, 255, 0.2)';
-        });
-        
-        item.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-            this.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.08)';
-            this.style.borderColor = 'rgba(0, 0, 0, 0.06)';
-        });
-    });
-
-    // Add hover effects for stats
-    const stats = document.querySelectorAll('.stat');
-    stats.forEach(stat => {
-        stat.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-4px)';
         });
         
-        stat.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
+        item.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(-2px)';
         });
     });
 });

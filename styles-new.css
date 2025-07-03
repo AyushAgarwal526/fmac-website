@@ -119,28 +119,26 @@ body {
 
 /* Hero Section */
 .hero {
-    padding: 140px 0 100px;
+    padding: 120px 0 80px;
     text-align: center;
 }
 
 .hero h1 {
-    font-size: 56px;
+    font-size: 48px;
     font-weight: 700;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     color: var(--text-primary);
-    letter-spacing: -0.02em;
 }
 
 .hero p {
-    font-size: 20px;
+    font-size: 18px;
     color: var(--text-secondary);
-    margin-bottom: 48px;
-    font-weight: 400;
+    margin-bottom: 40px;
 }
 
 .hero-actions {
     display: flex;
-    gap: 20px;
+    gap: 16px;
     justify-content: center;
     flex-wrap: wrap;
 }
@@ -150,41 +148,37 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 14px 28px;
-    border-radius: 12px;
+    padding: 12px 24px;
+    border-radius: var(--radius);
     text-decoration: none;
-    font-weight: 600;
-    font-size: 16px;
-    transition: all 0.2s ease;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.2s;
     border: none;
     cursor: pointer;
-    min-width: 140px;
 }
 
 .btn.primary {
     background: var(--accent-primary);
     color: white;
-    box-shadow: 0 2px 8px rgba(0, 122, 255, 0.2);
 }
 
 .btn.primary:hover {
     background: var(--accent-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 122, 255, 0.3);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-hover);
 }
 
 .btn.secondary {
-    background: var(--bg-primary);
+    background: var(--bg-secondary);
     color: var(--text-primary);
-    border: 2px solid var(--border-color);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
 }
 
 .btn.secondary:hover {
-    background: var(--bg-secondary);
-    border-color: var(--accent-primary);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    background: white;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-hover);
 }
 
 .btn.outline {
@@ -213,55 +207,49 @@ body {
 
 .films-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-    gap: 40px;
-    margin-bottom: 64px;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 32px;
+    margin-bottom: 48px;
 }
 
 .film-item {
     background: white;
-    border-radius: 16px;
+    border-radius: var(--radius);
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
-    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: var(--shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .film-item:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
-    border-color: rgba(0, 122, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
 }
 
 .film-video {
     width: 100%;
-    height: 220px;
+    height: 200px;
     position: relative;
-    background: #f8f9fa;
 }
 
 .film-video iframe {
     width: 100%;
     height: 100%;
     border: none;
-    border-radius: 16px 16px 0 0;
 }
 
 .film-meta {
-    padding: 24px;
+    padding: 20px;
 }
 
 .film-meta h3 {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 6px;
-    color: var(--text-primary);
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
 }
 
 .film-meta p {
     color: var(--text-secondary);
-    font-size: 15px;
-    line-height: 1.4;
+    font-size: 14px;
 }
 
 .view-more {
@@ -270,8 +258,7 @@ body {
 
 /* About Section */
 .about {
-    padding: 100px 0;
-    background: linear-gradient(135deg, #fafbfc 0%, #f8f9fa 100%);
+    padding: 80px 0;
 }
 
 .about-content {
@@ -281,50 +268,38 @@ body {
 }
 
 .about h2 {
-    font-size: 40px;
+    font-size: 32px;
     font-weight: 700;
-    margin-bottom: 20px;
-    letter-spacing: -0.02em;
+    margin-bottom: 16px;
 }
 
 .about p {
-    font-size: 20px;
+    font-size: 18px;
     color: var(--text-secondary);
-    margin-bottom: 60px;
-    line-height: 1.6;
+    margin-bottom: 48px;
 }
 
 .stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 48px;
+    gap: 32px;
 }
 
 .stat {
     text-align: center;
-    padding: 24px;
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-    transition: transform 0.2s ease;
-}
-
-.stat:hover {
-    transform: translateY(-4px);
 }
 
 .stat .number {
     display: block;
-    font-size: 32px;
-    font-weight: 800;
-    color: var(--accent-primary);
-    margin-bottom: 8px;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
 }
 
 .stat .label {
-    font-size: 16px;
+    font-size: 14px;
     color: var(--text-secondary);
-    font-weight: 500;
 }
 
 /* Footer */
@@ -394,27 +369,22 @@ body {
         display: flex;
     }
 
-    .hero {
-        padding: 120px 0 80px;
-    }
-
     .hero h1 {
-        font-size: 42px;
+        font-size: 36px;
     }
 
     .hero p {
-        font-size: 18px;
+        font-size: 16px;
     }
 
     .hero-actions {
         flex-direction: column;
         align-items: center;
-        gap: 16px;
     }
 
     .films-grid {
         grid-template-columns: 1fr;
-        gap: 32px;
+        gap: 24px;
     }
 
     .stats {
@@ -429,16 +399,11 @@ body {
     }
 
     .container {
-        padding: 0 20px;
+        padding: 0 16px;
     }
 
     .nav-container {
-        padding: 0 20px;
-    }
-
-    .btn {
-        width: 100%;
-        max-width: 320px;
+        padding: 0 16px;
     }
 }
 
@@ -447,34 +412,14 @@ body {
         padding: 100px 0 60px;
     }
 
-    .hero h1 {
-        font-size: 36px;
-    }
-
-    .hero p {
-        font-size: 16px;
-    }
-
     .films,
     .about {
-        padding: 80px 0;
+        padding: 60px 0;
     }
 
-    .about h2 {
-        font-size: 32px;
-    }
-
-    .about p {
-        font-size: 18px;
-    }
-
-    .films-grid {
-        grid-template-columns: 1fr;
-        gap: 24px;
-    }
-
-    .film-video {
-        height: 200px;
+    .btn {
+        width: 100%;
+        max-width: 280px;
     }
 }
 
