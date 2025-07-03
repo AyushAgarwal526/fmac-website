@@ -3,44 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Film Making Club (FMaC) - A passionate community of storytellers and film enthusiasts creating impactful cinema.">
-    <meta name="keywords" content="film making, cinema, movies, student films, video production, storytelling">
-    <meta name="author" content="Film Making Club">
+    <meta name="description" content="FMaC BITS Goa - Film Making Club. Submit your creative ideas and access professional equipment for filmmaking.">
+    <meta name="keywords" content="film making, BITS Goa, cinema, student films, video production, storytelling, FMaC">
+    <meta name="author" content="Film Making Club BITS Goa">
     
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yourusername.github.io/fmac-website/">
-    <meta property="og:title" content="FMaC - Film Making Club">
-    <meta property="og:description" content="Creating stories that matter, one frame at a time. Join our community of passionate filmmakers.">
-    <meta property="og:image" content="https://yourusername.github.io/fmac-website/assets/images/og-image.jpg">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://yourusername.github.io/fmac-website/">
-    <meta property="twitter:title" content="FMaC - Film Making Club">
-    <meta property="twitter:description" content="Creating stories that matter, one frame at a time. Join our community of passionate filmmakers.">
-    <meta property="twitter:image" content="https://yourusername.github.io/fmac-website/assets/images/og-image.jpg">
-    
-    <title>FMaC - Film Making Club</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>FMaC BITS Goa - Film Making Club</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
+<<body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <h2>FMaC</h2>
-                <span>Film Making Club</span>
+                <img src="assets/images/fmac-logo.png" alt="FMaC Logo" class="logo-img">
+                <div class="logo-text">
+                    <h2>FMaC</h2>
+                    <span>BITS Goa</span>
+                </div>
             </div>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#ideation" class="nav-link highlight">💡 Ideas</a></li>
+                <li><a href="#equipment" class="nav-link highlight">📋 Equipment</a></li>
+                <li><a href="#films" class="nav-link">Our Films</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#ideation" class="nav-link">Submit Ideas</a></li>
-                <li><a href="#equipment" class="nav-link">Equipment</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
+            <div class="social-nav">
+                <a href="https://www.youtube.com/@FilmmakingClubBITSGoa" target="_blank" class="social-link">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://www.instagram.com/fmac_bitsgoa/" target="_blank" class="social-link">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
             <div class="hamburger">
                 <span></span>
                 <span></span>
@@ -52,131 +49,63 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-background">
-            <video autoplay muted loop class="hero-video">
-                <source src="https://player.vimeo.com/external/373342829.sd.mp4?s=e90dcaba73c19c26d1ec7cc4a9a97ee6c21e8433&profile_id=164&oauth2_token_id=57447761" type="video/mp4">
-            </video>
-            <div class="hero-overlay"></div>
+            <div class="hero-gradient"></div>
         </div>
         <div class="hero-content">
-            <h1 class="hero-title">We Love Film</h1>
-            <p class="hero-subtitle">Creating stories that matter, one frame at a time</p>
-            <div class="hero-buttons">
-                <a href="#projects" class="btn btn-primary">Our Films</a>
-                <a href="#ideation" class="btn btn-secondary">Submit Your Idea</a>
+            <div class="hero-logo">
+                <img src="assets/images/FMaC Logo SVG.svg" alt="FMaC Logo" class="hero-logo-img">
+            </div>
+            <h1 class="hero-title">Film Making Club</h1>
+            <h2 class="hero-subtitle">BITS Pilani, K.K. Birla Goa Campus</h2>
+            <p class="hero-description">Where stories come to life, one frame at a time</p>
+            
+            <!-- Quick Access Cards -->
+            <div class="quick-access">
+                <a href="#ideation" class="quick-card primary">
+                    <div class="card-icon">💡</div>
+                    <h3>Submit Ideas</h3>
+                    <p>Share your creative vision</p>
+                </a>
+                <a href="#equipment" class="quick-card secondary">
+                    <div class="card-icon">📋</div>
+                    <h3>Equipment Log</h3>
+                    <p>Book professional gear</p>
+                </a>
             </div>
         </div>
         <div class="scroll-indicator">
+            <div class="scroll-text">Scroll to explore</div>
             <div class="scroll-arrow"></div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
+    <!-- Ideation Section - Most Accessible -->
+    <section id="ideation" class="ideation-section">
         <div class="container">
             <div class="section-header">
-                <h2>About FMaC</h2>
-                <p>Where passion meets creativity</p>
+                <div class="section-icon">💡</div>
+                <h2>Submit Your Creative Ideas</h2>
+                <p>Your vision, our platform. Share your story concepts and join our creative community.</p>
             </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Our Story</h3>
-                    <p>Film Making Club (FMaC) is a passionate community of storytellers, creators, and film enthusiasts. We believe in the power of cinema to inspire, educate, and bring people together.</p>
-                    <p>From short films to documentaries, from experimental pieces to narrative features, we explore every aspect of filmmaking while building a supportive creative community.</p>
-                    <div class="stats">
-                        <div class="stat">
-                            <span class="stat-number">50+</span>
-                            <span class="stat-label">Members</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">25+</span>
-                            <span class="stat-label">Films Created</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">3</span>
-                            <span class="stat-label">Years Active</span>
-                        </div>
+            <div class="ideation-grid">
+                <div class="ideation-form-card">
+                    <div class="card-header">
+                        <h3>📝 Idea Submission Form</h3>
+                        <p>Transform your concepts into cinema</p>
                     </div>
-                </div>
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Film Equipment">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Films</h2>
-                <p>Showcasing our creative journey</p>
-            </div>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Short Film">
-                        <div class="project-overlay">
-                            <button class="play-button">▶</button>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h4>The Last Frame</h4>
-                        <p>A poignant short film about memories and time</p>
-                        <span class="project-genre">Drama • 2024</span>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1478720568477-b0829c2b6b0e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Documentary">
-                        <div class="project-overlay">
-                            <button class="play-button">▶</button>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h4>Campus Chronicles</h4>
-                        <p>Documentary exploring student life and dreams</p>
-                        <span class="project-genre">Documentary • 2024</span>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1440404653325-ab127d49abc1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Experimental Film">
-                        <div class="project-overlay">
-                            <button class="play-button">▶</button>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h4>Abstract Emotions</h4>
-                        <p>An experimental journey through human feelings</p>
-                        <span class="project-genre">Experimental • 2023</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Ideation Section -->
-    <section id="ideation" class="ideation">
-        <div class="container">
-            <div class="section-header">
-                <h2>💡 Submit Your Ideas</h2>
-                <p>Share your creative vision with us</p>
-            </div>
-            <div class="ideation-content">
-                <div class="ideation-form">
                     <div class="form-container">
-                        <h3>📝 Submit Your Idea</h3>
                         <iframe class="form-iframe"
                             src="https://docs.google.com/forms/d/e/1FAIpQLSfZgYoYp3YoEQPFgG-dZq_HJcFHl6YjH3hKukTp3VYuXHQLEw/viewform?embedded=true"
                             loading="lazy">
                         </iframe>
                     </div>
                 </div>
-                <div class="ideation-responses">
+                <div class="ideation-responses-card">
+                    <div class="card-header">
+                        <h3>📊 Community Ideas</h3>
+                        <p>See what others are creating</p>
+                    </div>
                     <div class="responses-container">
-                        <h3>📊 Live Responses</h3>
                         <iframe class="responses-iframe"
                             src="https://docs.google.com/spreadsheets/d/1dCpvEuVAivYqo31DassKK_8QAdIuN_unNOZUDXS8kZo/edit?usp=sharing"
                             loading="lazy">
@@ -187,68 +116,239 @@
         </div>
     </section>
 
-    <!-- Equipment Section -->
-    <section id="equipment" class="equipment">
+    <!-- Equipment Section - Most Accessible -->
+    <section id="equipment" class="equipment-section">
         <div class="container">
             <div class="section-header">
-                <h2>📹 Equipment Log</h2>
-                <p>Professional gear for your creative projects</p>
+                <div class="section-icon">🎬</div>
+                <h2>Professional Equipment Access</h2>
+                <p>State-of-the-art filmmaking gear at your fingertips</p>
             </div>
             <div class="equipment-content">
-                <div class="equipment-info">
-                    <h3>Available Equipment</h3>
-                    <p>Access our comprehensive equipment database to check availability, specifications, and booking information for all our professional filmmaking gear.</p>
-                    <ul class="equipment-features">
-                        <li>📷 Professional Cameras</li>
-                        <li>🎤 Audio Recording Equipment</li>
-                        <li>💡 Lighting Setup</li>
-                        <li>📺 Editing Workstations</li>
-                        <li>🎬 Production Accessories</li>
-                    </ul>
+                <div class="equipment-features">
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fas fa-video"></i>
+                            <h4>Cameras</h4>
+                            <p>Professional cinema cameras</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-microphone"></i>
+                            <h4>Audio</h4>
+                            <p>High-quality recording equipment</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-lightbulb"></i>
+                            <h4>Lighting</h4>
+                            <p>Professional lighting setups</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-desktop"></i>
+                            <h4>Editing</h4>
+                            <p>Post-production workstations</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="equipment-link">
-                    <a href="https://maple-case-6b6.notion.site/FMaC-Equipment-Log-21eda89243578036b864e2c97563893d" target="_blank" class="equipment-btn">
-                        <span>📋 View Equipment Log</span>
-                        <p>Complete inventory and booking system</p>
+                <div class="equipment-cta">
+                    <h3>Ready to bring your vision to life?</h3>
+                    <a href="https://maple-case-6b6.notion.site/FMaC-Equipment-Log-21eda89243578036b864e2c97563893d" 
+                       target="_blank" class="equipment-btn">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Access Equipment Database</span>
                     </a>
+                    <p class="equipment-note">View inventory, check availability, and book equipment</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
+    <!-- Featured Films Section -->
+    <section id="films" class="films-section">
         <div class="container">
             <div class="section-header">
-                <h2>Get In Touch</h2>
-                <p>Ready to join our creative journey?</p>
+                <div class="section-icon">🎭</div>
+                <h2>Our Latest Films</h2>
+                <p>Award-winning content from our talented filmmakers</p>
             </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <h4>📧 Email</h4>
-                        <p>fmac@college.edu</p>
+            <div class="films-grid">
+                <!-- Featured Film 1 - GAJA Documentary -->
+                <div class="film-card featured">
+                    <div class="film-thumbnail">
+                        <iframe src="https://www.youtube.com/embed/NJahD9X1i6k" 
+                                title="GAJA | Documentary | FMaC BITS Goa" 
+                                allowfullscreen>
+                        </iframe>
                     </div>
-                    <div class="contact-item">
-                        <h4>📱 Social Media</h4>
-                        <div class="social-links">
-                            <a href="#" class="social-link">Instagram</a>
-                            <a href="#" class="social-link">YouTube</a>
-                            <a href="#" class="social-link">Discord</a>
+                    <div class="film-info">
+                        <h4>GAJA</h4>
+                        <p>Documentary featuring Dr. D.M. Kulkarni</p>
+                        <div class="film-stats">
+                            <span>4.6K views</span>
+                            <span>Documentary</span>
+                            <span>27 min</span>
                         </div>
                     </div>
-                    <div class="contact-item">
-                        <h4>📍 Location</h4>
-                        <p>Film Studio, Campus Building</p>
+                </div>
+
+                <!-- Film 2 - EXIT -->
+                <div class="film-card">
+                    <div class="film-thumbnail">
+                        <iframe src="https://www.youtube.com/embed/MJANSOA0OIM" 
+                                title="EXIT - A Fan-made Radiohead Film" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="film-info">
+                        <h4>EXIT</h4>
+                        <p>A Fan-made Radiohead Film | Spree '25</p>
+                        <div class="film-stats">
+                            <span>1.9K views</span>
+                            <span>Experimental</span>
+                        </div>
                     </div>
                 </div>
-                <div class="contact-form">
-                    <form>
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Your Email" required>
-                        <textarea placeholder="Your Message" rows="5" required></textarea>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
-                    </form>
+
+                <!-- Film 3 - Rakshasa -->
+                <div class="film-card">
+                    <div class="film-thumbnail">
+                        <iframe src="https://www.youtube.com/embed/hg3YkJYvOy0" 
+                                title="Rakshasa | JIFF 2024 Award Winning Film" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="film-info">
+                        <h4>Rakshasa</h4>
+                        <p>JIFF 2024 Award Winning Film</p>
+                        <div class="film-stats">
+                            <span>8.7K views</span>
+                            <span>Short Film</span>
+                            <span>Award Winner</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Film 4 - BT -->
+                <div class="film-card">
+                    <div class="film-thumbnail">
+                        <iframe src="https://www.youtube.com/embed/X-8QOo0FsfU" 
+                                title="BT | Waves '24 | FMaC BITS Goa" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="film-info">
+                        <h4>BT</h4>
+                        <p>Waves '24 | FMaC BITS Goa</p>
+                        <div class="film-stats">
+                            <span>8K views</span>
+                            <span>Short Film</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Film 5 - Bansuri -->
+                <div class="film-card">
+                    <div class="film-thumbnail">
+                        <iframe src="https://www.youtube.com/embed/fyRWAgOiYwA" 
+                                title="Bansuri | FMaC BITS Goa" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="film-info">
+                        <h4>Bansuri</h4>
+                        <p>FMaC BITS Goa</p>
+                        <div class="film-stats">
+                            <span>2.6K views</span>
+                            <span>Drama</span>
+                            <span>29 min</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Film 6 - Sheesha -->
+                <div class="film-card">
+                    <div class="film-thumbnail">
+                        <iframe src="https://www.youtube.com/embed/N3-T4HtjGx4" 
+                                title="Sheesha | Waves '23 | Filmmaking Club BITS Goa" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="film-info">
+                        <h4>Sheesha</h4>
+                        <p>Waves '23 | Filmmaking Club BITS Goa</p>
+                        <div class="film-stats">
+                            <span>10K views</span>
+                            <span>Short Film</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="films-cta">
+                <a href="https://www.youtube.com/@FilmmakingClubBITSGoa" target="_blank" class="youtube-btn">
+                    <i class="fab fa-youtube"></i>
+                    <span>Watch More on YouTube</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About FMaC BITS Goa</h2>
+                    <p class="about-lead">The Film Making Club at BITS Pilani, K.K. Birla Goa Campus is a passionate community of storytellers, creators, and film enthusiasts.</p>
+                    <p>We create award-winning films, documentaries, and experimental pieces that have gained recognition at film festivals like JIFF 2024. Our club provides a platform for students to explore every aspect of filmmaking while building a supportive creative community.</p>
+                    
+                    <div class="achievements">
+                        <div class="achievement">
+                            <h4>🏆 JIFF 2024</h4>
+                            <p>Award Winner - Rakshasa</p>
+                        </div>
+                        <div class="achievement">
+                            <h4>📱 3.94K</h4>
+                            <p>YouTube Subscribers</p>
+                        </div>
+                        <div class="achievement">
+                            <h4>🎬 64+</h4>
+                            <p>Videos Created</p>
+                        </div>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="https://www.youtube.com/@FilmmakingClubBITSGoa" target="_blank" class="social-btn youtube">
+                            <i class="fab fa-youtube"></i>
+                            <span>YouTube Channel</span>
+                        </a>
+                        <a href="https://www.instagram.com/fmac_bitsgoa/" target="_blank" class="social-btn instagram">
+                            <i class="fab fa-instagram"></i>
+                            <span>Instagram</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="visual-grid">
+                        <div class="visual-item">
+                            <img src="assets/images/fmac-logo.png" alt="FMaC Logo">
+                        </div>
+                        <div class="visual-item">
+                            <div class="stats-card">
+                                <h3>Our Impact</h3>
+                                <div class="stat">
+                                    <span class="number">50K+</span>
+                                    <span class="label">Total Views</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="number">25+</span>
+                                    <span class="label">Films Created</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="number">5+</span>
+                                    <span class="label">Years Active</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -258,21 +358,31 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-logo">
-                    <h3>FMaC</h3>
-                    <p>Film Making Club</p>
+                <div class="footer-brand">
+                    <img src="assets/images/fmac-logo.png" alt="FMaC Logo" class="footer-logo">
+                    <h3>FMaC BITS Goa</h3>
+                    <p>Film Making Club<br>BITS Pilani, K.K. Birla Goa Campus</p>
                 </div>
                 <div class="footer-links">
-                    <a href="#home">Home</a>
-                    <a href="#about">About</a>
-                    <a href="#projects">Projects</a>
-                    <a href="#ideation">Ideas</a>
-                    <a href="#equipment">Equipment</a>
-                    <a href="#contact">Contact</a>
+                    <div class="link-group">
+                        <h4>Quick Access</h4>
+                        <a href="#ideation">💡 Submit Ideas</a>
+                        <a href="#equipment">📋 Equipment Log</a>
+                        <a href="#films">Our Films</a>
+                    </div>
+                    <div class="link-group">
+                        <h4>Connect</h4>
+                        <a href="https://www.youtube.com/@FilmmakingClubBITSGoa" target="_blank">
+                            <i class="fab fa-youtube"></i> YouTube
+                        </a>
+                        <a href="https://www.instagram.com/fmac_bitsgoa/" target="_blank">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Film Making Club. All rights reserved.</p>
+                <p>&copy; 2024 Film Making Club BITS Goa. Creating stories that matter.</p>
             </div>
         </div>
     </footer>
