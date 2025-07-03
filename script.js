@@ -53,7 +53,7 @@ window.addEventListener('scroll', function() {
     }
 });
 
-// Page load animation
+// Page load animation (removed body opacity manipulation)
 window.addEventListener('load', function() {
     document.body.classList.add('loaded');
     

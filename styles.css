@@ -24,16 +24,20 @@
     --radius-lg: 20px;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     line-height: 1.6;
     color: var(--text-primary);
     background: var(--bg-primary);
+    background-color: #0a0a0a !important; /* Fallback dark background */
     overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Force dark theme */
+html {
+    scroll-behavior: smooth;
+    background-color: #0a0a0a !important;
 }
 
 .container {
@@ -831,15 +835,8 @@ body {
     }
 }
 
-/* Loading and Animation States */
-body {
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-body.loaded {
-    opacity: 1;
-}
+/* Loading and Animation States - Removed problematic opacity animation */
+/* body.loaded class handling moved to JavaScript only for specific elements */
 
 /* Mobile Navigation */
 @media (max-width: 768px) {
