@@ -89,7 +89,7 @@ html {
 
 .logo:hover {
     transform: scale(1.05);
-    filter: brightness(1.3);
+    filter: brightness(1.5);
 }
 
 .nav-menu {
@@ -160,7 +160,7 @@ html {
 /* Hero Section */
 .hero {
     position: relative;
-    min-height: 80vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -236,21 +236,27 @@ html {
 
 /* Hero Logo Styles */
 .hero-logo {
-    margin-bottom: 24px;
+    margin-bottom: 32px;
     display: flex;
     justify-content: center;
 }
 
 .hero-logo-img {
-    width: 64px;
-    height: 64px;
-    filter: drop-shadow(0 4px 12px rgba(244, 208, 63, 0.2));
+    width: 120px;
+    height: 120px;
+    filter: 
+        brightness(0) 
+        invert(1) 
+        drop-shadow(0 4px 8px rgba(244, 208, 63, 0.2));
     transition: all 0.3s ease;
 }
 
 .hero-logo-img:hover {
     transform: scale(1.05);
-    filter: drop-shadow(0 6px 16px rgba(244, 208, 63, 0.3));
+    filter: 
+        brightness(0) 
+        invert(1) 
+        drop-shadow(0 6px 12px rgba(244, 208, 63, 0.3));
 }
 
 /* Buttons */
@@ -382,7 +388,7 @@ html {
     grid-template-columns: repeat(3, 1fr);
     gap: 32px;
     margin-bottom: 80px;
-    align-items: start;
+    align-items: stretch;
 }
 
 .film-item {
@@ -395,7 +401,7 @@ html {
     position: relative;
     display: flex;
     flex-direction: column;
-    height: fit-content;
+    height: 100%;
 }
 
 
@@ -421,7 +427,7 @@ html {
 
 .film-video {
     width: 100%;
-    height: 200px;
+    height: 250px;
     position: relative;
     background: var(--bg-tertiary);
     overflow: hidden;
@@ -532,15 +538,8 @@ html {
     border-color: var(--accent-primary);
 }
 
-.film-video {
-    width: 100%;
-    height: 250px;
-    position: relative;
-    background: var(--bg-tertiary);
-}
-
 .film-item.featured .film-video {
-    height: 300px;
+    height: 250px;
 }
 
 .film-video iframe {
@@ -550,24 +549,6 @@ html {
     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
     pointer-events: none; /* Allow clicks to pass through until video is playing */
     transition: all 0.5s ease-in-out;
-}
-
-.film-meta {
-    padding: 24px;
-}
-
-.film-meta h3 {
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 8px;
-    color: var(--text-primary);
-}
-
-.film-meta p {
-    color: var(--text-secondary);
-    font-size: 15px;
-    line-height: 1.5;
-    margin-bottom: 16px;
 }
 
 .film-tags {
@@ -1255,7 +1236,7 @@ html {
     }
 
     .hero {
-        min-height: 90vh;
+        min-height: 100vh;
         padding: 120px 0 80px;
     }
 
@@ -1265,6 +1246,11 @@ html {
 
     .hero p {
         font-size: 18px;
+    }
+
+    .hero-logo-img {
+        width: 96px;
+        height: 96px;
     }
 
     .hero-actions {
@@ -1334,6 +1320,11 @@ html {
         width: 100%;
         max-width: 320px;
     }
+
+    .hero-logo-img {
+        width: 96px;
+        height: 96px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1343,6 +1334,11 @@ html {
 
     .hero p {
         font-size: 16px;
+    }
+
+    .hero-logo-img {
+        width: 80px;
+        height: 80px;
     }
 
     .films,
