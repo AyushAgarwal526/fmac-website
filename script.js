@@ -1,4 +1,4 @@
-// Enhanced FMaC Website JavaScript - Cinematic Experience
+// Enhanced FMaC Website JavaScript - Modern Interactive Experience
 
 // Mobile Navigation
 document.addEventListener('DOMContentLoaded', function() {
@@ -20,9 +20,16 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+
+    // Initialize all modern features
+    initScrollAnimations();
+    initParallaxEffects();
+    initInteractiveElements();
+    initScrollIndicator();
+    initScrollIndicator();
 });
 
-// Smooth scrolling with offset for fixed navbar
+// Smooth scrolling with modern easing
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -39,7 +46,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Enhanced navbar scroll effect
+// Enhanced navbar with modern blur effect
 window.addEventListener('scroll', function() {
     const navbar = document.querySelector('.navbar');
     const scrolled = window.scrollY > 50;
@@ -47,24 +54,30 @@ window.addEventListener('scroll', function() {
     if (scrolled) {
         navbar.style.background = 'rgba(10, 10, 10, 0.95)';
         navbar.style.backdropFilter = 'blur(20px)';
+        navbar.style.borderBottom = '1px solid rgba(255, 107, 53, 0.2)';
     } else {
         navbar.style.background = 'rgba(10, 10, 10, 0.9)';
         navbar.style.backdropFilter = 'blur(20px)';
+        navbar.style.borderBottom = '1px solid transparent';
     }
 });
 
-// Page load animation (removed body opacity manipulation)
+// Modern page load experience
 window.addEventListener('load', function() {
     document.body.classList.add('loaded');
     
-    // Trigger animations for elements
-    const elements = document.querySelectorAll('.film-item, .stat, .category');
-    elements.forEach((el, index) => {
+    // Trigger hero content animation
+    const heroContent = document.querySelector('.hero-content');
+    if (heroContent) {
+        heroContent.style.opacity = '0';
+        heroContent.style.transform = 'translateY(30px)';
+        heroContent.style.transition = 'all 1s cubic-bezier(0.4, 0, 0.2, 1)';
+        
         setTimeout(() => {
-            el.style.opacity = '1';
-            el.style.transform = 'translateY(0)';
-        }, index * 100);
-    });
+            heroContent.style.opacity = '1';
+            heroContent.style.transform = 'translateY(0)';
+        }, 300);
+    }
 });
 
 // Enhanced hover effects for film items
@@ -104,31 +117,175 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Enhanced intersection observer for scroll animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
+// Modern Scroll Animations
+function initScrollAnimations() {
+    // Advanced Intersection Observer with stagger animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
 
-const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
+    const animateOnScroll = new IntersectionObserver(function(entries) {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                // Stagger animation delay
+                setTimeout(() => {
+                    entry.target.classList.add('animate');
+                }, index * 100);
+            }
+        });
+    }, observerOptions);
 
-// Observe elements for scroll animations
-document.addEventListener('DOMContentLoaded', function() {
-    const animatedElements = document.querySelectorAll('.film-item, .category');
+    // Observe all animatable elements
+    const animatedElements = document.querySelectorAll('.film-item, .category, .section-header');
     animatedElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'all 0.6s ease';
-        observer.observe(el);
+        animateOnScroll.observe(el);
     });
-});
+
+    // Text reveal animation
+    const textElements = document.querySelectorAll('.section-header h2, .section-header p');
+    textElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+    });
+
+    const textObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    textElements.forEach(el => textObserver.observe(el));
+}
+
+// Advanced Parallax Effects
+function initParallaxEffects() {
+    let ticking = false;
+
+    function updateParallax() {
+        const scrolled = window.pageYOffset;
+        
+        // Hero background parallax
+        const heroBackground = document.querySelector('.hero-bg');
+        if (heroBackground) {
+            const speed = 0.5;
+            heroBackground.style.transform = `translateY(${scrolled * speed}px)`;
+        }
+
+        // Film items subtle parallax
+        const filmItems = document.querySelectorAll('.film-item');
+        filmItems.forEach((item, index) => {
+            const rect = item.getBoundingClientRect();
+            const speed = 0.1 + (index * 0.02);
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                const yPos = -(scrolled - item.offsetTop) * speed;
+                item.style.transform = `translateY(${yPos}px)`;
+            }
+        });
+
+        ticking = false;
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(updateParallax);
+            ticking = true;
+        }
+    }
+
+    window.addEventListener('scroll', requestTick);
+}
+
+// Interactive Elements Enhancement
+function initInteractiveElements() {
+    // Enhanced film item interactions
+    const filmItems = document.querySelectorAll('.film-item');
+    filmItems.forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            this.style.zIndex = '10';
+            
+            // Add ripple effect
+            const ripple = document.createElement('div');
+            ripple.className = 'ripple-effect';
+            ripple.style.cssText = `
+                position: absolute;
+                width: 100px;
+                height: 100px;
+                background: radial-gradient(circle, rgba(255, 107, 53, 0.3) 0%, transparent 70%);
+                border-radius: 50%;
+                pointer-events: none;
+                animation: ripple 0.8s ease-out;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            `;
+            this.appendChild(ripple);
+            
+            setTimeout(() => ripple.remove(), 800);
+        });
+        
+        item.addEventListener('mouseleave', function() {
+            this.style.zIndex = '1';
+        });
+    });
+
+    // Team category hover effects with skills animation
+    const categories = document.querySelectorAll('.category');
+    categories.forEach(category => {
+        category.addEventListener('mouseenter', function() {
+            const skills = this.querySelectorAll('.category-skills span');
+            skills.forEach((skill, index) => {
+                setTimeout(() => {
+                    skill.style.transform = 'translateY(-2px) scale(1.05)';
+                }, index * 50);
+            });
+        });
+        
+        category.addEventListener('mouseleave', function() {
+            const skills = this.querySelectorAll('.category-skills span');
+            skills.forEach(skill => {
+                skill.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    });
+}
+
+// Modern scroll progress indicator
+function initScrollIndicator() {
+    const scrollIndicator = document.getElementById('scrollIndicator');
+    if (!scrollIndicator) return;
+
+    function updateScrollIndicator() {
+        const scrollTop = window.pageYOffset;
+        const docHeight = document.body.offsetHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        
+        scrollIndicator.style.transform = `scaleX(${Math.min(scrollPercent / 100, 1)})`;
+    }
+
+    window.addEventListener('scroll', updateScrollIndicator);
+    updateScrollIndicator(); // Initial call
+}
+
+// Add ripple animation keyframes
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes ripple {
+        0% {
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 1;
+        }
+        100% {
+            transform: translate(-50%, -50%) scale(4);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(style);
 
 // Enhanced click tracking with better analytics
 document.addEventListener('click', function(e) {
@@ -148,43 +305,4 @@ document.addEventListener('click', function(e) {
             console.log('Instagram accessed:', linkText);
         }
     }
-});
-
-// Parallax effect for hero background
-window.addEventListener('scroll', function() {
-    const scrolled = window.pageYOffset;
-    const parallax = document.querySelector('.hero-bg');
-    if (parallax) {
-        const speed = 0.5;
-        parallax.style.transform = `translateY(${scrolled * speed}px)`;
-    }
-});
-
-// Button hover sound effect (optional - can be enabled)
-function addButtonSounds() {
-    const buttons = document.querySelectorAll('.btn');
-    buttons.forEach(button => {
-        button.addEventListener('mouseenter', function() {
-            // Optional: Add subtle sound effect here
-            this.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-        });
-    });
-}
-
-// Initialize enhanced features
-document.addEventListener('DOMContentLoaded', function() {
-    addButtonSounds();
-    
-    // Add loading state to buttons
-    const buttons = document.querySelectorAll('.btn');
-    buttons.forEach(button => {
-        button.addEventListener('click', function() {
-            if (this.getAttribute('target') === '_blank') {
-                this.style.opacity = '0.8';
-                setTimeout(() => {
-                    this.style.opacity = '1';
-                }, 200);
-            }
-        });
-    });
 });

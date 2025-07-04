@@ -6,9 +6,12 @@
     <meta name="description" content="FMaC BITS Goa - Film Making Club. Student filmmakers at BITS Pilani, K.K. Birla Goa Campus.">
     <title>FMaC - Film Making Club, BITS Goa</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=2.0">
+    <link rel="stylesheet" href="styles.css?v=3.0">
 </head>
 <body>
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -170,21 +173,60 @@
                 <p>Meet the creative minds behind FMaC's films.</p>
             </div>
             <div class="team-categories">
-                <div class="category">
-                    <h3>Filmmaking</h3>
-                    <p>Directors, cinematographers, and editors who bring stories to life</p>
+                <div class="category" data-category="writing">
+                    <div class="category-content">
+                        <h3>Writing</h3>
+                        <p>Screenwriters and story developers crafting compelling narratives and dialogue</p>
+                        <div class="category-skills">
+                            <span>Script Writing</span>
+                            <span>Story Development</span>
+                            <span>Dialogue</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="category">
-                    <h3>Writing</h3>
-                    <p>Screenwriters and story developers crafting compelling narratives</p>
+                <div class="category" data-category="acting">
+                    <div class="category-content">
+                        <h3>Acting</h3>
+                        <p>Talented performers who bring characters to life on screen</p>
+                        <div class="category-skills">
+                            <span>Performance</span>
+                            <span>Character Development</span>
+                            <span>Expression</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="category">
-                    <h3>Production</h3>
-                    <p>Producers, sound designers, and production managers</p>
+                <div class="category" data-category="cinematography">
+                    <div class="category-content">
+                        <h3>Cinematography</h3>
+                        <p>Visual storytellers capturing stunning imagery and camera work</p>
+                        <div class="category-skills">
+                            <span>Camera Operation</span>
+                            <span>Lighting</span>
+                            <span>Composition</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="category">
-                    <h3>Design</h3>
-                    <p>Visual artists creating posters, graphics, and promotional content</p>
+                <div class="category" data-category="sound">
+                    <div class="category-content">
+                        <h3>Sound Design</h3>
+                        <p>Audio specialists creating immersive soundscapes and music</p>
+                        <div class="category-skills">
+                            <span>Audio Recording</span>
+                            <span>Sound Mixing</span>
+                            <span>Music Production</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="category" data-category="post">
+                    <div class="category-content">
+                        <h3>Post Production</h3>
+                        <p>Editors and VFX artists who polish and perfect the final product</p>
+                        <div class="category-skills">
+                            <span>Video Editing</span>
+                            <span>Color Grading</span>
+                            <span>Visual Effects</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="join-us">
