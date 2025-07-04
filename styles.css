@@ -424,6 +424,7 @@ html {
     height: 200px;
     position: relative;
     background: var(--bg-tertiary);
+    overflow: hidden;
 }
 
 .film-video iframe {
@@ -432,7 +433,7 @@ html {
     border: none;
     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
     pointer-events: none; /* Allow clicks to pass through until video is playing */
-    transition: pointer-events 0.3s ease;
+    transition: all 0.5s ease-in-out;
 }
 
 .film-meta {
@@ -542,7 +543,7 @@ html {
     border: none;
     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
     pointer-events: none; /* Allow clicks to pass through until video is playing */
-    transition: pointer-events 0.3s ease;
+    transition: all 0.5s ease-in-out;
 }
 
 .film-meta {
@@ -1716,5 +1717,153 @@ html {
     20% { opacity: 1; }
     80% { opacity: 1; }
     100% { opacity: 0; }
+}
+
+/* Custom Dialog Styles */
+.custom-dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.custom-dialog-overlay.active {
+    opacity: 1;
+}
+
+.custom-dialog-content {
+    background: var(--bg-secondary);
+    width: 90%;
+    max-width: 500px;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.custom-dialog-overlay.active .custom-dialog-content {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.custom-dialog-header {
+    padding: 20px 25px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.custom-dialog-header h3 {
+    margin: 0;
+    color: var(--color-primary);
+    font-size: 1.5rem;
+}
+
+.custom-dialog-body {
+    padding: 25px;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--color-secondary);
+}
+
+.custom-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding: 15px 25px 20px;
+    gap: 10px;
+}
+
+.custom-dialog-btn {
+    padding: 10px 20px;
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.cancel-btn {
+    background: var(--bg-tertiary);
+    color: var(--color-secondary);
+    border: 1px solid var(--border-color);
+}
+
+.cancel-btn:hover {
+    background: var(--bg-secondary);
+}
+
+.confirm-btn {
+    background: var(--accent-primary);
+    color: #000;
+    border: none;
+}
+
+.confirm-btn:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(244, 208, 63, 0.3);
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .custom-dialog-content {
+        width: 95%;
+    }
+    
+    .custom-dialog-header {
+        padding: 15px 20px;
+    }
+    
+    .custom-dialog-body {
+        padding: 20px;
+    }
+    
+    .custom-dialog-actions {
+        padding: 10px 20px 15px;
+    }
+}
+
+/* Video Preview Hover Effects */
+.film-item:hover .film-video {
+    box-shadow: inset 0 0 0 3px var(--accent-primary);
+}
+
+.preview-label {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--accent-primary);
+    color: #000;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    z-index: 5;
+    animation: fadeInDown 0.3s ease forwards;
+}
+
+.film-item.preview-active .film-video {
+    border-color: var(--accent-primary);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 

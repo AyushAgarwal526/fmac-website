@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initFloatingActionButton();
     initFilmFilters();
     initFilmModals();
+    setupFilmPreviews(); // Add hover preview functionality
 });
 
 // Smooth scrolling with modern easing
@@ -354,7 +355,9 @@ function initFilmModals() {
     const modalStats = modal.querySelector('.modal-stats');
     const modalVideo = modal.querySelector('.modal-video');
     
-    // Directly open YouTube videos in a new tab - most reliable solution
+    // Use custom dialog and setup hover previews
+    setupFilmPreviews();
+    
     filmItems.forEach(filmItem => {
         filmItem.style.cursor = 'pointer';
         filmItem.addEventListener('click', function(e) {
@@ -364,11 +367,12 @@ function initFilmModals() {
                 const title = this.querySelector('h3').textContent;
                 
                 if (videoUrl && videoUrl !== '#') {
-                    // Show a simple confirmation message
-                    const confirmMsg = `Opening "${title}" on YouTube in a new tab.`;
-                    if (confirm(confirmMsg)) {
-                        window.open(videoUrl, '_blank');
-                    }
+                    // Show custom dialog
+                    showCustomDialog(
+                        'Watch Film', 
+                        `Would you like to watch "${title}" on YouTube?`,
+                        () => window.open(videoUrl, '_blank')
+                    );
                 } else {
                     showComingSoonModal(this);
                 }
@@ -384,11 +388,12 @@ function initFilmModals() {
             const title = filmItem.querySelector('h3').textContent;
             
             if (videoUrl && videoUrl !== '#') {
-                // Show a simple confirmation message
-                const confirmMsg = `Opening "${title}" on YouTube in a new tab.`;
-                if (confirm(confirmMsg)) {
-                    window.open(videoUrl, '_blank');
-                }
+                // Show custom dialog
+                showCustomDialog(
+                    'Watch Film', 
+                    `Would you like to watch "${title}" on YouTube?`,
+                    () => window.open(videoUrl, '_blank')
+                );
             } else {
                 showComingSoonModal(filmItem);
             }
@@ -578,12 +583,13 @@ function initFilmModals() {
         // Only allow alphanumeric characters and basic word characters
         return value.replace(/[^a-zA-Z0-9-_]/g, '');
     }
-    
-    function extractYouTubeId(url) {
-        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-        const match = url.match(regExp);
-        return (match && match[2].length === 11) ? match[2] : null;
-    }
+}
+
+// Extract YouTube video ID from various YouTube URL formats
+function extractYouTubeId(url) {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) ? match[2] : null;
 }
 
 function createModalElement() {
@@ -627,19 +633,201 @@ document.head.appendChild(style);
 // Enhanced click tracking
 document.addEventListener('click', function(e) {
     if (e.target.matches('a[target="_blank"]')) {
-        const href = e.target.getAttribute('href');
-        const linkText = e.target.textContent.trim();
-        
-        if (href.includes('docs.google.com/forms')) {
-            console.log('Ideation form accessed:', linkText);
-        } else if (href.includes('docs.google.com/spreadsheets')) {
-            console.log('Form responses sheet accessed:', linkText);
-        } else if (href.includes('notion.site')) {
-            console.log('Equipment log accessed:', linkText);
-        } else if (href.includes('youtube.com')) {
-            console.log('YouTube accessed:', linkText);
-        } else if (href.includes('instagram.com')) {
-            console.log('Instagram accessed:', linkText);
-        }
+        // External link tracking removed for production
+        // You can add analytics tracking here if needed
     }
 });
+
+// Custom dialog function - more beautiful than native confirm
+function showCustomDialog(title, message, onConfirm) {
+    // Check if a dialog already exists and remove it
+    const existingDialog = document.getElementById('customDialog');
+    if (existingDialog) {
+        existingDialog.remove();
+    }
+    
+    // Create dialog elements
+    const dialogOverlay = document.createElement('div');
+    dialogOverlay.className = 'custom-dialog-overlay';
+    dialogOverlay.id = 'customDialog';
+    
+    const dialogContent = document.createElement('div');
+    dialogContent.className = 'custom-dialog-content';
+    
+    const dialogHeader = document.createElement('div');
+    dialogHeader.className = 'custom-dialog-header';
+    
+    const dialogTitle = document.createElement('h3');
+    dialogTitle.textContent = title;
+    
+    const dialogBody = document.createElement('div');
+    dialogBody.className = 'custom-dialog-body';
+    dialogBody.textContent = message;
+    
+    const dialogActions = document.createElement('div');
+    dialogActions.className = 'custom-dialog-actions';
+    
+    const cancelBtn = document.createElement('button');
+    cancelBtn.className = 'custom-dialog-btn cancel-btn';
+    cancelBtn.textContent = 'Cancel';
+    
+    const confirmBtn = document.createElement('button');
+    confirmBtn.className = 'custom-dialog-btn confirm-btn';
+    confirmBtn.textContent = 'Watch on YouTube';
+    
+    // Build the dialog structure
+    dialogHeader.appendChild(dialogTitle);
+    dialogActions.appendChild(cancelBtn);
+    dialogActions.appendChild(confirmBtn);
+    
+    dialogContent.appendChild(dialogHeader);
+    dialogContent.appendChild(dialogBody);
+    dialogContent.appendChild(dialogActions);
+    
+    dialogOverlay.appendChild(dialogContent);
+    
+    // Add to document
+    document.body.appendChild(dialogOverlay);
+    
+    // Add animation class after a small delay (for transition effect)
+    setTimeout(() => {
+        dialogOverlay.classList.add('active');
+    }, 10);
+    
+    // Event handlers
+    const closeDialog = () => {
+        dialogOverlay.classList.remove('active');
+        setTimeout(() => {
+            dialogOverlay.remove();
+        }, 300);
+    };
+    
+    cancelBtn.addEventListener('click', closeDialog);
+    
+    confirmBtn.addEventListener('click', () => {
+        closeDialog();
+        if (typeof onConfirm === 'function') {
+            onConfirm();
+        }
+    });
+    
+    dialogOverlay.addEventListener('click', (e) => {
+        if (e.target === dialogOverlay) {
+            closeDialog();
+        }
+    });
+    
+    // Close on escape key
+    document.addEventListener('keydown', function escHandler(e) {
+        if (e.key === 'Escape') {
+            closeDialog();
+            document.removeEventListener('keydown', escHandler);
+        }
+    });
+    
+    // Focus the confirm button
+    confirmBtn.focus();
+}
+
+// Function to preview video on hover
+function setupFilmPreviews() {
+    const filmItems = document.querySelectorAll('.film-item');
+    
+    // Store original content to restore later
+    const originalContent = new Map();
+    
+    filmItems.forEach(filmItem => {
+        const videoUrl = filmItem.getAttribute('data-video');
+        if (videoUrl && videoUrl !== '#') {
+            const videoId = extractYouTubeId(videoUrl);
+            if (videoId) {
+                const filmVideo = filmItem.querySelector('.film-video');
+                if (!filmVideo) return;
+                
+                // Store original content
+                originalContent.set(filmItem, {
+                    html: filmVideo.innerHTML,
+                    height: filmVideo.clientHeight
+                });
+                
+                // Create preview URL with high quality and starting point
+                const previewUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=${videoId}&start=5&vq=hd720`;
+                
+                // Lazy loading - only load preview when needed
+                let previewLoaded = false;
+                let iframe = null;
+                
+                // Set up hover behavior with delay to prevent accidental triggers
+                let hoverTimer;
+                
+                filmItem.addEventListener('mouseenter', function() {
+                    // Short delay before loading preview
+                    hoverTimer = setTimeout(() => {
+                        if (!previewLoaded) {
+                            // Create or update iframe for preview
+                            const existingIframe = filmVideo.querySelector('iframe');
+                            
+                            if (existingIframe) {
+                                // Use existing iframe
+                                existingIframe.src = previewUrl;
+                                iframe = existingIframe;
+                            } else {
+                                // Create new iframe if needed
+                                iframe = document.createElement('iframe');
+                                iframe.src = previewUrl;
+                                iframe.setAttribute('allowfullscreen', '');
+                                iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+                                iframe.style.width = '100%';
+                                iframe.style.height = '100%';
+                                iframe.style.border = 'none';
+                                iframe.style.position = 'absolute';
+                                iframe.style.top = '0';
+                                iframe.style.left = '0';
+                                
+                                // Preserve aspect ratio and original height
+                                filmVideo.style.position = 'relative';
+                                filmVideo.style.paddingBottom = '56.25%'; // 16:9 aspect ratio
+                                filmVideo.style.height = '0';
+                                filmVideo.style.overflow = 'hidden';
+                                
+                                // Clear and add iframe
+                                filmVideo.innerHTML = '';
+                                filmVideo.appendChild(iframe);
+                            }
+                            
+                            // Add preview label
+                            const previewLabel = document.createElement('div');
+                            previewLabel.className = 'preview-label';
+                            previewLabel.textContent = 'Preview';
+                            filmVideo.appendChild(previewLabel);
+                            
+                            previewLoaded = true;
+                            
+                            // Add active preview class
+                            filmItem.classList.add('preview-active');
+                        }
+                    }, 300);
+                });
+                
+                filmItem.addEventListener('mouseleave', function() {
+                    // Clear timer if mouse leaves before preview loads
+                    clearTimeout(hoverTimer);
+                    
+                    // Reset to original content
+                    if (previewLoaded) {
+                        const original = originalContent.get(filmItem);
+                        
+                        filmVideo.innerHTML = original.html;
+                        filmVideo.style.position = '';
+                        filmVideo.style.paddingBottom = '';
+                        filmVideo.style.height = '';
+                        filmVideo.style.overflow = '';
+                        
+                        previewLoaded = false;
+                        filmItem.classList.remove('preview-active');
+                    }
+                });
+            }
+        }
+    });
+}
