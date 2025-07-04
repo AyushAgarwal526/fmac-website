@@ -6,11 +6,16 @@
     <meta name="description" content="FMaC BITS Goa - Film Making Club. Student filmmakers at BITS Pilani, K.K. Birla Goa Campus.">
     <title>FMaC - Film Making Club, BITS Goa</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=3.0">
+    <link rel="stylesheet" href="styles.css?v=5.0">
 </head>
 <body>
     <!-- Scroll Progress Indicator -->
     <div class="scroll-indicator" id="scrollIndicator"></div>
+
+    <!-- Floating Action Button -->
+    <div class="fab" id="fabButton">
+        <img src="assets/images/fmac-logo.png" alt="FMaC" class="fab-logo">
+    </div>
 
     <!-- Navigation -->
     <nav class="navbar">
@@ -42,6 +47,9 @@
         <div class="hero-bg"></div>
         <div class="container">
             <div class="hero-content">
+                <div class="hero-logo">
+                    <img src="assets/images/FMaC Logo SVG.svg" alt="FMaC Logo" class="hero-logo-img">
+                </div>
                 <h1>Film Making Club</h1>
                 <p>BITS Pilani, K.K. Birla Goa Campus</p>
                 <div class="hero-actions">
@@ -66,81 +74,187 @@
                 <h2>Our Films</h2>
                 <p>A collection of our work over the years.</p>
             </div>
-            <div class="films-grid">
-                <div class="film-item featured">
+            
+            <!-- Film Filters -->
+            <div class="film-filters">
+                <button class="filter-btn active" data-filter="all">All Films</button>
+                <button class="filter-btn" data-filter="orientation">Orientation</button>
+                <button class="filter-btn" data-filter="drama">Drama</button>
+                <button class="filter-btn" data-filter="short">Short Films</button>
+                <button class="filter-btn" data-filter="experimental">Experimental</button>
+            </div>
+            
+            <div class="films-grid" id="filmsGrid">
+                <div class="film-item" data-category="orientation" data-year="2024" data-duration="9 min" data-video="https://www.youtube.com/watch?v=QwXP-6TuOGw">
                     <div class="film-video">
                         <iframe src="https://www.youtube.com/embed/QwXP-6TuOGw" title="Freshers Intro 24" allowfullscreen></iframe>
+                        <div class="film-overlay">
+                            <button class="play-btn">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </button>
+                            <button class="info-btn" data-film="freshers-intro">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                     <div class="film-meta">
                         <h3>Freshers' Intro '24</h3>
-                        <p>BITS Goa × FMaC × Waves • 9 min</p>
+                        <p>BITS Goa × FMaC × Waves • 9 min • 2024</p>
                         <div class="film-tags">
-                            <span class="tag">Orientation</span>
+                            <span class="tag orientation">Orientation</span>
+                        </div>
+                        <div class="film-stats">
+                            <span class="views">186K views</span>
+                            <span class="likes">2.1K likes</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="film-item">
+                <div class="film-item" data-category="drama" data-year="2023" data-duration="15 min" data-video="https://www.youtube.com/watch?v=hg3YkJYvOy0">
                     <div class="film-video">
                         <iframe src="https://www.youtube.com/embed/hg3YkJYvOy0" title="Rakshasa" allowfullscreen></iframe>
+                        <div class="film-overlay">
+                            <button class="play-btn">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </button>
+                            <button class="info-btn" data-film="rakshasa">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                     <div class="film-meta">
                         <h3>Rakshasa</h3>
-                        <p>Drama • 15 min</p>
+                        <p>Drama • 15 min • 2023</p>
                         <div class="film-tags">
-                            <span class="tag">Drama</span>
+                            <span class="tag drama">Drama</span>
+                        </div>
+                        <div class="film-stats">
+                            <span class="views">45K views</span>
+                            <span class="likes">892 likes</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="film-item">
+                <div class="film-item" data-category="short" data-year="2023" data-duration="9 min" data-video="https://www.youtube.com/watch?v=N3-T4HtjGx4">
                     <div class="film-video">
                         <iframe src="https://www.youtube.com/embed/N3-T4HtjGx4" title="Sheesha" allowfullscreen></iframe>
+                        <div class="film-overlay">
+                            <button class="play-btn">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </button>
+                            <button class="info-btn" data-film="sheesha">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                     <div class="film-meta">
                         <h3>Sheesha</h3>
-                        <p>Waves '23 • 9 min</p>
+                        <p>Waves '23 • 9 min • 2023</p>
                         <div class="film-tags">
-                            <span class="tag">Short Film</span>
+                            <span class="tag short">Short Film</span>
+                        </div>
+                        <div class="film-stats">
+                            <span class="views">32K views</span>
+                            <span class="likes">674 likes</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="film-item">
+                <div class="film-item" data-category="drama" data-year="2024" data-duration="17 min" data-video="https://www.youtube.com/watch?v=X-8QOo0FsfU">
                     <div class="film-video">
                         <iframe src="https://www.youtube.com/embed/X-8QOo0FsfU" title="BT" allowfullscreen></iframe>
+                        <div class="film-overlay">
+                            <button class="play-btn">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </button>
+                            <button class="info-btn" data-film="bt">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                     <div class="film-meta">
                         <h3>BT</h3>
-                        <p>Waves '24 • 17 min</p>
+                        <p>Waves '24 • 17 min • 2024</p>
                         <div class="film-tags">
-                            <span class="tag">Drama</span>
+                            <span class="tag drama">Drama</span>
+                        </div>
+                        <div class="film-stats">
+                            <span class="views">28K views</span>
+                            <span class="likes">521 likes</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="film-item">
+                <div class="film-item" data-category="short" data-year="2024" data-duration="6 min" data-video="https://www.youtube.com/watch?v=aXt-E4D3xng">
                     <div class="film-video">
                         <iframe src="https://www.youtube.com/embed/aXt-E4D3xng" title="sorry" allowfullscreen></iframe>
+                        <div class="film-overlay">
+                            <button class="play-btn">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </button>
+                            <button class="info-btn" data-film="sorry">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                     <div class="film-meta">
                         <h3>sorry</h3>
-                        <p>Quark '24 • 6 min</p>
+                        <p>Quark '24 • 6 min • 2024</p>
                         <div class="film-tags">
-                            <span class="tag">Short Film</span>
+                            <span class="tag short">Short Film</span>
+                        </div>
+                        <div class="film-stats">
+                            <span class="views">15K views</span>
+                            <span class="likes">312 likes</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="film-item">
+                <div class="film-item" data-category="experimental" data-year="2024" data-duration="8 min" data-video="https://www.youtube.com/watch?v=43hjpwNXrRw">
                     <div class="film-video">
                         <iframe src="https://www.youtube.com/embed/43hjpwNXrRw" title="1+1=5?" allowfullscreen></iframe>
+                        <div class="film-overlay">
+                            <button class="play-btn">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </button>
+                            <button class="info-btn" data-film="one-plus-one">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                     <div class="film-meta">
                         <h3>1+1=5?</h3>
-                        <p>Zephyr Curtain Raiser 2024 • 8 min</p>
+                        <p>Zephyr Curtain Raiser 2024 • 8 min • 2024</p>
                         <div class="film-tags">
-                            <span class="tag">Experimental</span>
+                            <span class="tag experimental">Experimental</span>
+                        </div>
+                        <div class="film-stats">
+                            <span class="views">21K views</span>
+                            <span class="likes">445 likes</span>
                         </div>
                     </div>
                 </div>
@@ -158,6 +272,9 @@
         <div class="container">
             <div class="about-content">
                 <div class="about-text">
+                    <div class="about-logo-accent">
+                        <img src="assets/images/fmac-logo.png" alt="FMaC" class="about-accent-logo">
+                    </div>
                     <h2>About FMaC</h2>
                     <p>The Film Making Club at BITS Pilani, K.K. Birla Goa Campus is a community of students passionate about filmmaking and storytelling.</p>
                 </div>

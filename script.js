@@ -26,7 +26,9 @@ document.addEventListener('DOMContentLoaded', function() {
     initParallaxEffects();
     initInteractiveElements();
     initScrollIndicator();
-    initScrollIndicator();
+    initFloatingActionButton();
+    initFilmFilters();
+    initFilmModals();
 });
 
 // Smooth scrolling with modern easing
@@ -254,6 +256,241 @@ function initInteractiveElements() {
     });
 }
 
+// Film Filtering System
+function initFilmFilters() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const filmItems = document.querySelectorAll('.film-item');
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const filter = this.getAttribute('data-filter');
+            
+            // Update active filter button
+            filterBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Filter films with animation
+            filmItems.forEach((item, index) => {
+                const itemCategory = item.getAttribute('data-category');
+                const shouldShow = filter === 'all' || itemCategory === filter;
+                
+                if (shouldShow) {
+                    setTimeout(() => {
+                        item.style.display = 'block';
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(20px) scale(0.9)';
+                        
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0) scale(1)';
+                        }, 50);
+                    }, index * 50);
+                } else {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(-20px) scale(0.9)';
+                    setTimeout(() => {
+                        item.style.display = 'none';
+                    }, 300);
+                }
+            });
+            
+            // Add button click animation
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 150);
+        });
+    });
+}
+
+// Film Modal System
+function initFilmModals() {
+    const playBtns = document.querySelectorAll('.play-btn');
+    const infoBtns = document.querySelectorAll('.info-btn');
+    
+    // Create modal container if it doesn't exist
+    let modal = document.getElementById('filmModal');
+    if (!modal) {
+        modal = createModalElement();
+        document.body.appendChild(modal);
+    }
+    
+    const modalContent = modal.querySelector('.modal-content');
+    const closeBtn = modal.querySelector('.close-modal');
+    const modalTitle = modal.querySelector('.modal-title');
+    const modalDescription = modal.querySelector('.modal-description');
+    const modalStats = modal.querySelector('.modal-stats');
+    const modalVideo = modal.querySelector('.modal-video');
+    
+    // Play button functionality
+    playBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const filmItem = this.closest('.film-item');
+            const videoUrl = filmItem.getAttribute('data-video') || '#';
+            
+            if (videoUrl && videoUrl !== '#') {
+                // Open video in modal or new tab based on URL type
+                if (videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be')) {
+                    // For YouTube videos, embed in modal
+                    const videoId = extractYouTubeId(videoUrl);
+                    if (videoId) {
+                        showVideoModal(videoId, filmItem);
+                    } else {
+                        window.open(videoUrl, '_blank');
+                    }
+                } else {
+                    // For other video URLs, open in new tab
+                    window.open(videoUrl, '_blank');
+                }
+            } else {
+                // Show "Coming Soon" message
+                showComingSoonModal(filmItem);
+            }
+        });
+    });
+    
+    // Info button functionality
+    infoBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const filmItem = this.closest('.film-item');
+            showInfoModal(filmItem);
+        });
+    });
+    
+    // Close modal functionality
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+    
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+    
+    function showVideoModal(videoId, filmItem) {
+        const title = filmItem.querySelector('h3').textContent;
+        const description = getFilmDescription(filmItem);
+        
+        modalTitle.textContent = title;
+        modalDescription.textContent = description;
+        modalStats.innerHTML = getFilmStats(filmItem);
+        modalVideo.innerHTML = `
+            <iframe 
+                src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" 
+                frameborder="0" 
+                allowfullscreen>
+            </iframe>
+        `;
+        
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function showInfoModal(filmItem) {
+        const title = filmItem.querySelector('h3').textContent;
+        const description = getFilmDescription(filmItem);
+        
+        modalTitle.textContent = title;
+        modalDescription.textContent = description;
+        modalStats.innerHTML = getFilmStats(filmItem);
+        modalVideo.innerHTML = `
+            <div class="film-poster">
+                <img src="${filmItem.querySelector('img').src}" alt="${title}">
+            </div>
+        `;
+        
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function showComingSoonModal(filmItem) {
+        const title = filmItem.querySelector('h3').textContent;
+        
+        modalTitle.textContent = title;
+        modalDescription.textContent = 'This film is currently in production. Stay tuned for updates!';
+        modalStats.innerHTML = '<div class="coming-soon">🎬 Coming Soon</div>';
+        modalVideo.innerHTML = `
+            <div class="coming-soon-placeholder">
+                <div class="coming-soon-icon">🎥</div>
+                <p>Video coming soon...</p>
+            </div>
+        `;
+        
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+        
+        // Clear video to stop playback
+        setTimeout(() => {
+            modalVideo.innerHTML = '';
+        }, 300);
+    }
+    
+    function getFilmDescription(filmItem) {
+        const descriptions = {
+            'Orientation Film 2024': 'A cinematic journey showcasing the vibrant culture and spirit of BITS Goa, designed to welcome new students to our campus community.',
+            'Silent Echoes': 'A powerful drama exploring themes of isolation and connection in the modern world, told through compelling performances and stunning visuals.',
+            'The Last Frame': 'An experimental short film that challenges conventional storytelling, using innovative cinematography to create an immersive viewing experience.',
+            'Night Shift': 'A gripping drama that follows the lives of late-night workers, revealing the hidden stories that unfold when the city sleeps.',
+            'Fragments': 'An artistic exploration of memory and time, using experimental techniques to create a unique visual and emotional experience.',
+            'Urban Dreams': 'A documentary-style film capturing the aspirations and struggles of young dreamers in the urban landscape.'
+        };
+        
+        const title = filmItem.querySelector('h3').textContent;
+        return descriptions[title] || 'A compelling film by FMaC BITS Goa, showcasing the creative talent and storytelling prowess of our film community.';
+    }
+    
+    function getFilmStats(filmItem) {
+        const stats = filmItem.querySelectorAll('.film-stats span');
+        let statsHTML = '';
+        
+        stats.forEach(stat => {
+            statsHTML += `<div class="modal-stat">${stat.innerHTML}</div>`;
+        });
+        
+        return statsHTML || '<div class="modal-stat">🎬 FMaC Production</div>';
+    }
+    
+    function extractYouTubeId(url) {
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+        const match = url.match(regExp);
+        return (match && match[2].length === 11) ? match[2] : null;
+    }
+}
+
+function createModalElement() {
+    const modal = document.createElement('div');
+    modal.id = 'filmModal';
+    modal.className = 'modal';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <div class="modal-header">
+                <h2 class="modal-title"></h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-video"></div>
+                <div class="modal-info">
+                    <p class="modal-description"></p>
+                    <div class="modal-stats"></div>
+                </div>
+            </div>
+        </div>
+    `;
+    return modal;
+}
+
 // Modern scroll progress indicator
 function initScrollIndicator() {
     const scrollIndicator = document.getElementById('scrollIndicator');
@@ -269,6 +506,38 @@ function initScrollIndicator() {
 
     window.addEventListener('scroll', updateScrollIndicator);
     updateScrollIndicator(); // Initial call
+}
+
+// Floating Action Button functionality
+function initFloatingActionButton() {
+    const fab = document.getElementById('fabButton');
+    if (!fab) return;
+
+    fab.addEventListener('click', function() {
+        // Scroll to top with smooth animation
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+        
+        // Add click animation
+        this.style.transform = 'scale(0.8)';
+        setTimeout(() => {
+            this.style.transform = 'scale(1)';
+        }, 150);
+    });
+
+    // Show/hide based on scroll position
+    window.addEventListener('scroll', function() {
+        const scrolled = window.pageYOffset;
+        if (scrolled > 500) {
+            fab.style.opacity = '1';
+            fab.style.pointerEvents = 'auto';
+        } else {
+            fab.style.opacity = '0';
+            fab.style.pointerEvents = 'none';
+        }
+    });
 }
 
 // Add ripple animation keyframes
