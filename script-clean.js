@@ -291,20 +291,20 @@ function initFloatingActionButton() {
     });
 }
 
-// Film Filtering System with Input Validation
+// Film Filtering System
 function initFilmFilters() {
     const filterBtns = document.querySelectorAll('.filter-btn');
     const filmItems = document.querySelectorAll('.film-item');
 
     filterBtns.forEach(btn => {
         btn.addEventListener('click', function() {
-            const filter = sanitizeFilterValue(this.getAttribute('data-filter') || 'all');
+            const filter = this.getAttribute('data-filter');
             
             filterBtns.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
             
             filmItems.forEach((item, index) => {
-                const itemCategory = sanitizeFilterValue(item.getAttribute('data-category') || '');
+                const itemCategory = item.getAttribute('data-category');
                 const shouldShow = filter === 'all' || itemCategory === filter;
                 
                 if (shouldShow) {
@@ -403,24 +403,14 @@ function initFilmModals() {
         
         modalTitle.textContent = title;
         modalDescription.textContent = description;
-        
-        // Safely set stats content
-        const statsContent = getFilmStats(filmItem);
-        modalStats.innerHTML = ''; // Clear first
-        modalStats.appendChild(statsContent);
-        
-        // Safely create iframe with validated videoId
-        const safeVideoId = sanitizeVideoId(videoId);
-        if (safeVideoId) {
-            const iframe = document.createElement('iframe');
-            iframe.src = `https://www.youtube.com/embed/${safeVideoId}?autoplay=1&rel=0`;
-            iframe.frameBorder = '0';
-            iframe.allowFullscreen = true;
-            iframe.title = title;
-            
-            modalVideo.innerHTML = ''; // Clear first
-            modalVideo.appendChild(iframe);
-        }
+        modalStats.innerHTML = getFilmStats(filmItem);
+        modalVideo.innerHTML = `
+            <iframe 
+                src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" 
+                frameborder="0" 
+                allowfullscreen>
+            </iframe>
+        `;
         
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
@@ -432,25 +422,12 @@ function initFilmModals() {
         
         modalTitle.textContent = title;
         modalDescription.textContent = description;
-        
-        // Safely set stats content
-        const statsContent = getFilmStats(filmItem);
-        modalStats.innerHTML = ''; // Clear first
-        modalStats.appendChild(statsContent);
-        
-        // Safely create poster image
-        const imgSrc = filmItem.querySelector('img') ? filmItem.querySelector('img').src : '';
-        if (imgSrc) {
-            const posterDiv = document.createElement('div');
-            posterDiv.className = 'film-poster';
-            const img = document.createElement('img');
-            img.src = imgSrc;
-            img.alt = title;
-            posterDiv.appendChild(img);
-            
-            modalVideo.innerHTML = ''; // Clear first
-            modalVideo.appendChild(posterDiv);
-        }
+        modalStats.innerHTML = getFilmStats(filmItem);
+        modalVideo.innerHTML = `
+            <div class="film-poster">
+                <img src="${filmItem.querySelector('img').src}" alt="${title}">
+            </div>
+        `;
         
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
@@ -461,31 +438,13 @@ function initFilmModals() {
         
         modalTitle.textContent = title;
         modalDescription.textContent = 'This film is currently in production. Stay tuned for updates!';
-        
-        // Safely create coming soon content
-        const comingSoonDiv = document.createElement('div');
-        comingSoonDiv.className = 'coming-soon';
-        comingSoonDiv.textContent = '🎬 Coming Soon';
-        
-        modalStats.innerHTML = ''; // Clear first
-        modalStats.appendChild(comingSoonDiv);
-        
-        // Safely create placeholder content
-        const placeholderDiv = document.createElement('div');
-        placeholderDiv.className = 'coming-soon-placeholder';
-        
-        const iconDiv = document.createElement('div');
-        iconDiv.className = 'coming-soon-icon';
-        iconDiv.textContent = '🎥';
-        
-        const textP = document.createElement('p');
-        textP.textContent = 'Video coming soon...';
-        
-        placeholderDiv.appendChild(iconDiv);
-        placeholderDiv.appendChild(textP);
-        
-        modalVideo.innerHTML = ''; // Clear first
-        modalVideo.appendChild(placeholderDiv);
+        modalStats.innerHTML = '<div class="coming-soon">🎬 Coming Soon</div>';
+        modalVideo.innerHTML = `
+            <div class="coming-soon-placeholder">
+                <div class="coming-soon-icon">🎥</div>
+                <p>Video coming soon...</p>
+            </div>
+        `;
         
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
@@ -516,34 +475,13 @@ function initFilmModals() {
     
     function getFilmStats(filmItem) {
         const stats = filmItem.querySelectorAll('.film-stats span');
-        const statsContainer = document.createElement('div');
+        let statsHTML = '';
         
-        if (stats.length > 0) {
-            stats.forEach(stat => {
-                const statDiv = document.createElement('div');
-                statDiv.className = 'modal-stat';
-                statDiv.textContent = stat.textContent; // Use textContent for safety
-                statsContainer.appendChild(statDiv);
-            });
-        } else {
-            const defaultStat = document.createElement('div');
-            defaultStat.className = 'modal-stat';
-            defaultStat.textContent = '🎬 FMaC Production';
-            statsContainer.appendChild(defaultStat);
-        }
+        stats.forEach(stat => {
+            statsHTML += `<div class="modal-stat">${stat.innerHTML}</div>`;
+        });
         
-        return statsContainer;
-    }
-    
-    function sanitizeVideoId(videoId) {
-        // Validate YouTube video ID format (11 characters, alphanumeric + _ and -)
-        const videoIdPattern = /^[a-zA-Z0-9_-]{11}$/;
-        return videoIdPattern.test(videoId) ? videoId : null;
-    }
-    
-    function sanitizeFilterValue(value) {
-        // Only allow alphanumeric characters and basic word characters
-        return value.replace(/[^a-zA-Z0-9-_]/g, '');
+        return statsHTML || '<div class="modal-stat">🎬 FMaC Production</div>';
     }
     
     function extractYouTubeId(url) {

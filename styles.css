@@ -1429,6 +1429,45 @@ html {
     border: none;
 }
 
+/* Stats Update Animation */
+.film-stats span {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.film-stats span.updating {
+    color: var(--accent-primary);
+    transform: scale(1.05);
+}
+
+.film-stats span.updating::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-primary);
+    opacity: 0.1;
+    border-radius: 4px;
+    animation: statsGlow 2s ease-in-out infinite;
+}
+
+@keyframes statsGlow {
+    0%, 100% { opacity: 0.1; }
+    50% { opacity: 0.3; }
+}
+
+.stats-loading {
+    opacity: 0.6;
+    animation: statsLoading 1.5s ease-in-out infinite;
+}
+
+@keyframes statsLoading {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 0.3; }
+}
+
 /* Enhanced Filter Button Styles */
 .film-filters {
     display: flex;
