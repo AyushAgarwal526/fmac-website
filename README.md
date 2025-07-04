@@ -3,7 +3,7 @@
 [![Deploy to GitHub Pages](https://github.com/username/fmac-website/workflows/Deploy%20to%20GitHub%20Pages/badge.svg)](https://github.com/username/fmac-website/actions)
 [![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://username.github.io/fmac-website/)
 
-A modern, responsive website for the Film Making Club (FMaC) featuring ideation submission, equipment logging, and project showcases.
+A modern, responsive website for the Film Making Club (FMaC) at BITS Pilani, K.K. Birla Goa Campus, showcasing films, providing ideation submission, and equipment access.
 
 ## 🌐 Live Demo
 
@@ -12,45 +12,45 @@ Visit the live website: [https://username.github.io/fmac-website/](https://usern
 ## 🚀 Features
 
 ### 🎬 Main Website
-- **Cinematic Hero Section**: Video background with smooth animations
-- **About Section**: Club information with animated statistics
-- **Projects Showcase**: Film gallery with interactive hover effects
-- **Ideation Portal**: Integrated Google Forms for idea submission
-- **Equipment Database**: Direct integration with Notion equipment log
-- **Contact System**: Contact form and club information
+- **Film Showcase**: Gallery of club films with YouTube video embeds
+- **Interactive Filtering**: Filter films by category, year, and duration
+- **Club Statistics**: Display of subscriber count, video count, and total views
+- **Responsive Design**: Optimized for mobile and desktop viewing
+- **External Links**: Direct access to ideation forms and equipment database
 
-### 💡 Dedicated Ideation Portal
-- Full-page ideation experience
-- Real-time form submissions and responses
+### 💡 Ideation Portal
+- Dedicated ideation submission page
 - Beautiful animated gradient background
+- Direct link to Google Forms for idea submission
 - Mobile-optimized interface
 
 ## 🛠️ Tech Stack
 
 - **Frontend**: HTML5, CSS3, Vanilla JavaScript
 - **Styling**: Modern CSS with Grid, Flexbox, and Animations
-- **Fonts**: Inter + Playfair Display (Google Fonts)
-- **Images**: Unsplash API integration
-- **Forms**: Google Forms integration
-- **Database**: Google Sheets + Notion integration
+- **Fonts**: Inter (Google Fonts)
+- **Video**: YouTube embeds for film showcase
+- **External Services**: Google Forms, Notion (for equipment)
 - **Deployment**: GitHub Pages
+- **Security**: Content Security Policy (CSP) headers
 
 ## 📁 Project Structure
 
 ```
 fmac-website/
-├── index.html              # Main landing page
-├── ideation.html           # Dedicated ideation portal
+├── index.html              # Main website
+├── ideation.html           # Ideation portal
 ├── styles.css              # Main stylesheet
 ├── script.js               # JavaScript functionality
 ├── assets/                 # Static assets
-│   ├── images/            # Local images
-│   └── videos/            # Video files
+│   ├── images/            # Club logos and images
+│   └── videos/            # Video files (if any)
 ├── .github/               # GitHub workflows
 │   └── workflows/
-│       └── deploy.yml     # Auto-deployment
-├── README.md              # Project documentation
-└── LICENSE                # MIT License
+│       └── deploy.yml     # GitHub Pages deployment
+├── .gitignore             # Git ignore file
+├── LICENSE                # MIT License
+└── README.md              # This file
 ```
 
 ## 🚀 Deployment
@@ -69,7 +69,7 @@ This project is configured for automatic deployment to GitHub Pages:
 3. Select source branch (main)
 4. Your site will be available at `https://yourusername.github.io/fmac-website/`
 
-## ⚙️ Setup & Configuration
+## ⚙️ Setup & Customization
 
 ### 1. Clone the Repository
 ```bash
@@ -78,24 +78,27 @@ cd fmac-website
 ```
 
 ### 2. Customize Content
-Update the following files with your information:
+Update the following in `index.html`:
+- Club name and information
+- YouTube channel links
+- Social media links
+- External form URLs (Google Forms, Notion)
+- Film videos and descriptions
 
-**Google Forms Integration:**
-- Update iframe URLs in `index.html` and `ideation.html`
-- Replace with your Google Form and Sheet URLs
+### 3. Local Development
+```bash
+# Serve locally (requires Python)
+python -m http.server 8000
 
-**Notion Integration:**
-- Update the equipment log URL in `index.html`
+# Or use any static file server
+npx serve .
+```
 
-**Contact Information:**
-- Update email, social media links, and address in `index.html`
+## 🔒 Security Features
 
-### 3. Custom Domain (Optional)
-To use a custom domain:
-1. Add a `CNAME` file with your domain
-2. Configure DNS settings
-3. Update GitHub Pages settings
-
+- **Content Security Policy (CSP)**: Prevents XSS attacks
+- **Secure External Links**: All external links use `rel="noopener noreferrer"`
+- **Input Validation**: Safe handling of user interactions
 ## 🎨 Customization
 
 ### Colors & Branding
@@ -109,10 +112,10 @@ Update CSS variables in `styles.css`:
 ```
 
 ### Content Updates
-- **Hero Video**: Replace video URL in the hero section
-- **Project Cards**: Update project information and images
-- **About Section**: Modify club statistics and description
-- **Contact Info**: Update email, social media, and location
+- **Film Gallery**: Update film information and YouTube video IDs
+- **Statistics**: Update club numbers (subscribers, videos, views)
+- **About Section**: Modify club description and information
+- **External Links**: Update Google Forms and Notion URLs
 
 ## 📱 Responsive Design
 
@@ -135,16 +138,9 @@ npx serve .
 
 ### Making Changes
 1. Edit files locally
-2. Test changes
+2. Test changes with local server
 3. Commit and push to GitHub
 4. Automatic deployment will trigger
-
-## 📈 Performance
-
-- **Optimized Images**: WebP format support
-- **Lazy Loading**: Iframes and images
-- **Minified Assets**: CSS and JS optimization
-- **CDN Fonts**: Google Fonts with display swap
 
 ## 🤝 Contributing
 
@@ -161,18 +157,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🆘 Support
 
 For support and questions:
-- 📧 Email: fmac@college.edu
-- 🐛 Issues: [GitHub Issues](https://github.com/yourusername/fmac-website/issues)
-- 💬 Discussions: [GitHub Discussions](https://github.com/yourusername/fmac-website/discussions)
-
-## 🚀 Deployment Status
-
-- **Main Branch**: Auto-deploys to production
-- **Development**: Create feature branches for new changes
-- **GitHub Pages**: Automatic deployment on push to main
+- 📧 Email: contact through the website forms
+- � Issues: [GitHub Issues](https://github.com/yourusername/fmac-website/issues)
 
 ---
 
-**Made with ❤️ by the Film Making Club**
+**Made with ❤️ by the Film Making Club, BITS Goa**
 
 *Creating stories that matter, one frame at a time*
