@@ -431,6 +431,8 @@ html {
     height: 100%;
     border: none;
     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    pointer-events: none; /* Allow clicks to pass through until video is playing */
+    transition: pointer-events 0.3s ease;
 }
 
 .film-meta {
@@ -539,6 +541,8 @@ html {
     height: 100%;
     border: none;
     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    pointer-events: none; /* Allow clicks to pass through until video is playing */
+    transition: pointer-events 0.3s ease;
 }
 
 .film-meta {
@@ -981,7 +985,8 @@ html {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 100%;
+    right: 0;
+    top: 100%;
     height: 2px;
     background: var(--gradient-primary);
     transform: scaleX(0);
@@ -1658,4 +1663,52 @@ html {
         font-size: 13px;
         justify-content: center;
     }
+}
+
+/* Video playing state */
+.film-item.video-playing .film-video iframe {
+    pointer-events: auto; /* Enable interaction when video is playing */
+}
+
+.film-item.video-playing {
+    z-index: 5;
+}
+
+/* Coming soon overlay */
+.coming-soon-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    z-index: 10;
+    animation: fadeInOut 3s ease-in-out;
+}
+
+.coming-soon-content {
+    text-align: center;
+    color: white;
+}
+
+.coming-soon-icon {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+.coming-soon-content p {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
 }
