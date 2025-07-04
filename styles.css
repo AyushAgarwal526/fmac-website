@@ -1672,6 +1672,11 @@ html {
 
 .film-item.video-playing {
     z-index: 5;
+    cursor: default; /* Change cursor when video is playing */
+}
+
+.film-item.video-playing .film-video {
+    cursor: default; /* Don't show pointer cursor over playing video */
 }
 
 /* Coming soon overlay */
@@ -1712,3 +1717,4 @@ html {
     80% { opacity: 1; }
     100% { opacity: 0; }
 }
+
