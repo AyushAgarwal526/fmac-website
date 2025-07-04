@@ -354,28 +354,23 @@ function initFilmModals() {
     const modalStats = modal.querySelector('.modal-stats');
     const modalVideo = modal.querySelector('.modal-video');
     
-    // Simple click to play - change iframe src to enable autoplay
+    // Directly open YouTube videos in a new tab - most reliable solution
     filmItems.forEach(filmItem => {
         filmItem.style.cursor = 'pointer';
         filmItem.addEventListener('click', function(e) {
-            // Don't trigger if clicking on buttons or if already playing
-            if (!e.target.closest('.film-actions') && !this.classList.contains('video-playing')) {
+            // Don't trigger if clicking on buttons
+            if (!e.target.closest('.film-actions')) {
                 const videoUrl = this.getAttribute('data-video') || '#';
+                const title = this.querySelector('h3').textContent;
                 
                 if (videoUrl && videoUrl !== '#') {
-                    const videoId = extractYouTubeId(videoUrl);
-                    if (videoId) {
-                        const iframe = this.querySelector('iframe');
-                        if (iframe) {
-                            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
-                            iframe.style.pointerEvents = 'auto';
-                            this.classList.add('video-playing');
-                        }
-                    } else {
+                    // Show a simple confirmation message
+                    const confirmMsg = `Opening "${title}" on YouTube in a new tab.`;
+                    if (confirm(confirmMsg)) {
                         window.open(videoUrl, '_blank');
                     }
                 } else {
-                    showComingSoonMessage(this);
+                    showComingSoonModal(this);
                 }
             }
         });
@@ -385,25 +380,17 @@ function initFilmModals() {
         btn.addEventListener('click', function(e) {
             e.stopPropagation();
             const filmItem = this.closest('.film-item');
+            const videoUrl = filmItem.getAttribute('data-video') || '#';
+            const title = filmItem.querySelector('h3').textContent;
             
-            if (!filmItem.classList.contains('video-playing')) {
-                const videoUrl = filmItem.getAttribute('data-video') || '#';
-                
-                if (videoUrl && videoUrl !== '#') {
-                    const videoId = extractYouTubeId(videoUrl);
-                    if (videoId) {
-                        const iframe = filmItem.querySelector('iframe');
-                        if (iframe) {
-                            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
-                            iframe.style.pointerEvents = 'auto';
-                            filmItem.classList.add('video-playing');
-                        }
-                    } else {
-                        window.open(videoUrl, '_blank');
-                    }
-                } else {
-                    showComingSoonMessage(filmItem);
+            if (videoUrl && videoUrl !== '#') {
+                // Show a simple confirmation message
+                const confirmMsg = `Opening "${title}" on YouTube in a new tab.`;
+                if (confirm(confirmMsg)) {
+                    window.open(videoUrl, '_blank');
                 }
+            } else {
+                showComingSoonModal(filmItem);
             }
         });
     });
@@ -416,7 +403,7 @@ function initFilmModals() {
         });
     });
     
-    // Keep modal functionality for info button
+    // Modal controls
     closeBtn.addEventListener('click', closeModal);
     modal.addEventListener('click', function(e) {
         if (e.target === modal) {
@@ -430,9 +417,81 @@ function initFilmModals() {
         }
     });
     
-    function showComingSoonMessage(filmItem) {
-        // Simple alert for coming soon videos
-        alert('This video is coming soon!');
+    function showVideoModal(videoId, filmItem) {
+        const title = filmItem.querySelector('h3').textContent;
+        modalTitle.textContent = title;
+        
+        // Safely create iframe with validated videoId
+        const safeVideoId = sanitizeVideoId(videoId);
+        if (safeVideoId) {
+            const iframe = document.createElement('iframe');
+            iframe.src = `https://www.youtube.com/embed/${safeVideoId}?autoplay=1&rel=0`;
+            iframe.frameBorder = '0';
+            iframe.allowFullscreen = true;
+            iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+            iframe.title = title;
+            
+            modalVideo.innerHTML = ''; // Clear first
+            modalVideo.appendChild(iframe);
+        }
+        
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function showComingSoonModal(filmItem) {
+        const title = filmItem.querySelector('h3').textContent;
+        modalTitle.textContent = title;
+        modalDescription.textContent = 'This film is coming soon!';
+        
+        const placeholderDiv = document.createElement('div');
+        placeholderDiv.className = 'coming-soon-placeholder';
+        placeholderDiv.innerHTML = '<div class="coming-soon-icon">🎬</div><p>Coming Soon...</p>';
+        
+        modalVideo.innerHTML = ''; // Clear first
+        modalVideo.appendChild(placeholderDiv);
+        
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function showInfoModal(filmItem) {
+        const title = filmItem.querySelector('h3').textContent;
+        const description = getFilmDescription(filmItem);
+        
+        modalTitle.textContent = title;
+        modalDescription.textContent = description;
+        
+        // Safely set stats content
+        const statsContent = getFilmStats(filmItem);
+        modalStats.innerHTML = ''; // Clear first
+        modalStats.appendChild(statsContent);
+        
+        // Safely create poster image
+        const imgSrc = filmItem.querySelector('img') ? filmItem.querySelector('img').src : '';
+        if (imgSrc) {
+            const posterDiv = document.createElement('div');
+            posterDiv.className = 'film-poster';
+            const img = document.createElement('img');
+            img.src = imgSrc;
+            img.alt = title;
+            posterDiv.appendChild(img);
+            
+            modalVideo.innerHTML = ''; // Clear first
+            modalVideo.appendChild(posterDiv);
+        }
+        
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+        
+        setTimeout(() => {
+            modalVideo.innerHTML = '';
+        }, 300);
     }
     
     function showInfoModal(filmItem) {
