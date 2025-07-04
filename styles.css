@@ -12,14 +12,16 @@
     --text-primary: #ffffff;
     --text-secondary: #b0b0b0;
     --text-muted: #808080;
-    --accent-primary: #ff6b35;
-    --accent-secondary: #ffa726;
+    --accent-primary: #f4d03f;
+    --accent-secondary: #f7dc6f;
+    --accent-dark: #d4af37;
     --accent-blue: #4285f4;
     --border-color: #333333;
     --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.4);
-    --gradient-primary: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+    --gradient-primary: linear-gradient(135deg, #f4d03f 0%, #d4af37 100%);
     --gradient-dark: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+    --gradient-yellow-black: linear-gradient(135deg, #f4d03f 0%, #2c2c2c 100%);
     --radius: 12px;
     --radius-lg: 20px;
 }
@@ -174,9 +176,9 @@ html {
     width: 100%;
     height: 100%;
     background: 
-        radial-gradient(circle at 20% 80%, rgba(255, 107, 53, 0.2) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255, 167, 38, 0.2) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(255, 107, 53, 0.1) 0%, transparent 70%),
+        radial-gradient(circle at 20% 80%, rgba(244, 208, 63, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(247, 220, 111, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(244, 208, 63, 0.1) 0%, transparent 70%),
         var(--gradient-dark);
     animation: heroGradientShift 8s ease-in-out infinite;
 }
@@ -242,13 +244,13 @@ html {
 .hero-logo-img {
     width: 64px;
     height: 64px;
-    filter: drop-shadow(0 4px 12px rgba(255, 107, 53, 0.2));
+    filter: drop-shadow(0 4px 12px rgba(244, 208, 63, 0.2));
     transition: all 0.3s ease;
 }
 
 .hero-logo-img:hover {
     transform: scale(1.05);
-    filter: drop-shadow(0 6px 16px rgba(255, 107, 53, 0.3));
+    filter: drop-shadow(0 6px 16px rgba(244, 208, 63, 0.3));
 }
 
 /* Buttons */
@@ -286,13 +288,13 @@ html {
 
 .btn.primary {
     background: var(--gradient-primary);
-    color: white;
-    box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
+    color: black;
+    box-shadow: 0 4px 20px rgba(244, 208, 63, 0.3);
 }
 
 .btn.primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(255, 107, 53, 0.4);
+    box-shadow: 0 8px 30px rgba(244, 208, 63, 0.4);
 }
 
 .btn.secondary {
@@ -403,7 +405,7 @@ html {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(45deg, transparent, rgba(255, 107, 53, 0.1), transparent);
+    background: linear-gradient(45deg, transparent, rgba(244, 208, 63, 0.1), transparent);
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -414,7 +416,7 @@ html {
 
 .film-item:hover {
     transform: translateY(-12px) scale(1.02);
-    box-shadow: 0 25px 50px rgba(255, 107, 53, 0.3);
+    box-shadow: 0 25px 50px rgba(244, 208, 63, 0.3);
     border-color: var(--accent-primary);
 }
 
@@ -483,8 +485,8 @@ html {
 }
 
 @keyframes glow {
-    from { box-shadow: 0 0 5px rgba(255, 107, 53, 0.5); }
-    to { box-shadow: 0 0 20px rgba(255, 107, 53, 0.8); }
+    from { box-shadow: 0 0 5px rgba(244, 208, 63, 0.5); }
+    to { box-shadow: 0 0 20px rgba(244, 208, 63, 0.8); }
 }
 
 .film-item.featured .film-badge {
@@ -707,7 +709,7 @@ html {
 .category:hover {
     transform: translateY(-15px) scale(1.03);
     border-color: var(--accent-primary);
-    box-shadow: 0 25px 50px rgba(255, 107, 53, 0.3);
+    box-shadow: 0 25px 50px rgba(244, 208, 63, 0.3);
 }
 
 .category-content {
@@ -998,7 +1000,7 @@ html {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.2), transparent);
+    background: linear-gradient(90deg, transparent, rgba(244, 208, 63, 0.2), transparent);
     animation: shimmer 1.5s infinite;
 }
 
@@ -1195,7 +1197,7 @@ html {
     justify-content: center;
     color: white;
     cursor: pointer;
-    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+    box-shadow: 0 8px 25px rgba(244, 208, 63, 0.4);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1000;
     transform: scale(0);
@@ -1209,7 +1211,7 @@ html {
 
 .fab:hover {
     transform: scale(1.1);
-    box-shadow: 0 12px 30px rgba(255, 107, 53, 0.6);
+    box-shadow: 0 12px 30px rgba(244, 208, 63, 0.6);
 }
 
 .fab:active {
@@ -1231,8 +1233,8 @@ html {
 .category:hover,
 .film-item:hover {
     box-shadow: 
-        0 25px 50px rgba(255, 107, 53, 0.3),
-        0 0 50px rgba(255, 107, 53, 0.1),
+        0 25px 50px rgba(244, 208, 63, 0.3),
+        0 0 50px rgba(244, 208, 63, 0.1),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
@@ -1243,10 +1245,10 @@ html {
 
 @keyframes pulse-glow {
     0%, 100% {
-        box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
+        box-shadow: 0 4px 20px rgba(244, 208, 63, 0.3);
     }
     50% {
-        box-shadow: 0 4px 30px rgba(255, 107, 53, 0.6);
+        box-shadow: 0 4px 30px rgba(244, 208, 63, 0.6);
     }
 }
 
@@ -1467,7 +1469,7 @@ html {
     color: var(--text-primary);
     border-color: var(--accent-primary);
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+    box-shadow: 0 8px 25px rgba(244, 208, 63, 0.3);
 }
 
 .filter-btn:hover::before {
@@ -1477,10 +1479,10 @@ html {
 .filter-btn.active {
     background: var(--gradient-primary);
     border-color: var(--accent-primary);
-    color: white;
+    color: black;
     font-weight: 600;
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+    box-shadow: 0 8px 25px rgba(244, 208, 63, 0.4);
 }
 
 .filter-btn.active::before {
@@ -1538,8 +1540,9 @@ html {
 .play-btn:hover {
     background: var(--accent-primary);
     border-color: var(--accent-primary);
+    color: black;
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
+    box-shadow: 0 8px 20px rgba(244, 208, 63, 0.4);
 }
 
 .info-btn:hover {

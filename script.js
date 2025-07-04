@@ -56,7 +56,7 @@ window.addEventListener('scroll', function() {
     if (scrolled) {
         navbar.style.background = 'rgba(10, 10, 10, 0.95)';
         navbar.style.backdropFilter = 'blur(20px)';
-        navbar.style.borderBottom = '1px solid rgba(255, 107, 53, 0.2)';
+        navbar.style.borderBottom = '1px solid rgba(244, 208, 63, 0.2)';
     } else {
         navbar.style.background = 'rgba(10, 10, 10, 0.9)';
         navbar.style.backdropFilter = 'blur(20px)';
@@ -217,7 +217,7 @@ function initInteractiveElements() {
                 position: absolute;
                 width: 100px;
                 height: 100px;
-                background: radial-gradient(circle, rgba(255, 107, 53, 0.3) 0%, transparent 70%);
+                background: radial-gradient(circle, rgba(244, 208, 63, 0.3) 0%, transparent 70%);
                 border-radius: 50%;
                 pointer-events: none;
                 animation: ripple 0.8s ease-out;
