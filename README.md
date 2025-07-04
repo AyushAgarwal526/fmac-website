@@ -1,13 +1,6 @@
 # FMaC - Film Making Club Website
 
-[![Deploy to GitHub Pages](https://github.com/username/fmac-website/workflows/Deploy%20to%20GitHub%20Pages/badge.svg)](https://github.com/username/fmac-website/actions)
-[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://username.github.io/fmac-website/)
-
 A modern, responsive website for the Film Making Club (FMaC) at BITS Pilani, K.K. Birla Goa Campus, showcasing films, providing ideation submission, and equipment access.
-
-## 🌐 Live Demo
-
-Visit the live website: [https://username.github.io/fmac-website/](https://username.github.io/fmac-website/)
 
 ## 🚀 Features
 
@@ -67,7 +60,7 @@ This project is configured for automatic deployment to GitHub Pages:
 1. Clone the repository
 2. Enable GitHub Pages in repository settings
 3. Select source branch (main)
-4. Your site will be available at `https://yourusername.github.io/fmac-website/`
+4. Your site will be available at `https://yourusername.github.io/repository-name/`
 
 ## ⚙️ Setup & Customization
 
